@@ -21,5 +21,8 @@ namespace EFCore01.Models
         public string Description { get; set; }
 
         public int Top_ID { get; set; }
+        public Topic Topic { get; set; }
+        public List<Stud_Course> Stud_Courses { get; set; } = new();
+        public List<Course_Inst> Course_Insts { get; set; } = new();
     }
 }

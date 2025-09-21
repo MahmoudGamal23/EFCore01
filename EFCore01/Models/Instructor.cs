@@ -25,5 +25,7 @@ namespace EFCore01.Models
         public decimal Bonus { get; set; }
 
         public int Dept_ID { get; set; }
+        public Department Department { get; set; }
+        public List<Course_Inst> Course_Insts { get; set; } = new();
     }
 }

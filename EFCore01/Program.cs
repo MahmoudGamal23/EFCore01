@@ -1,4 +1,5 @@
 ﻿using EFCore01.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCore01
 {
@@ -6,10 +7,13 @@ namespace EFCore01
     {
         public static void Main(string[] args)
         {
-            var context = new ITIDbContext();
-            context.Database.EnsureCreated();
+            using (var context = new ITIDbContext())
+            {
+                
+                context.Database.Migrate();
 
-            Console.WriteLine("Database is created");
+                Console.WriteLine("Database created and migrations applied");
+            }
         }
     }
 }

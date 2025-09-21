@@ -18,5 +18,8 @@ namespace EFCore01.Models
         public int Ins_ID { get; set; }
 
         public DateTime HiringDate { get; set; }
+        public Instructor Manager { get; set; }
+        public List<Student> Students { get; set; } = new();
+        public List<Instructor> Instructors { get; set; }= new();
     }
 }

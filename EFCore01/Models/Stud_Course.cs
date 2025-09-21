@@ -10,12 +10,12 @@ namespace EFCore01.Models
 {
     public class Stud_Course
     {
-        [Key, Column(Order = 0)]
+        
         public int stud_ID { get; set; }
-
-        [Key, Column(Order = 1)]
         public int Course_ID { get; set; }
 
         public decimal Grade { get; set; }
+        public Student Student { get; set; }
+        public Course Course { get; set; } 
     }
 }

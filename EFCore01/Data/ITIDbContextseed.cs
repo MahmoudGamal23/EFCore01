@@ -10,7 +10,7 @@ namespace EFCore01.Data
         {
             try
             {
-                // ---------- Step 1: Seed Departments ----------
+                // ---------- Seed Departments ----------
                 if (!dbContext.Departments.Any())
                 {
                     var deptData = File.ReadAllText("Data/departments.json");
@@ -18,7 +18,7 @@ namespace EFCore01.Data
 
                     if (departments != null)
                     {
-                        // خليه null عشان مايحصلش ForeignKey conflict
+                       
                         foreach (var d in departments)
                             d.Ins_ID = null;
 
@@ -27,7 +27,7 @@ namespace EFCore01.Data
                     }
                 }
 
-                // ---------- Step 2: Seed Instructors ----------
+                // ----------  Seed Instructors ----------
                 if (!dbContext.Instructors.Any())
                 {
                     var instructors = new List<Instructor>
@@ -41,17 +41,17 @@ namespace EFCore01.Data
                     dbContext.SaveChanges();
                 }
 
-                // ---------- Step 3: Update Departments with Managers ----------
+                // ---------- Update Departments with Managers ----------
                 var firstDept = dbContext.Departments.FirstOrDefault();
                 var firstInstructor = dbContext.Instructors.FirstOrDefault();
 
                 if (firstDept != null && firstInstructor != null)
                 {
-                    firstDept.Ins_ID = firstInstructor.ID; // ربط القسم بمدير
+                    firstDept.Ins_ID = firstInstructor.ID; 
                     dbContext.SaveChanges();
                 }
 
-                // ---------- Step 4: Seed Employees ----------
+                // ---------- Seed Employees ----------
                 if (!dbContext.Employees.Any())
                 {
                     var empData = File.ReadAllText("Data/employees.json");

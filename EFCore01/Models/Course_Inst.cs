@@ -10,15 +10,13 @@ namespace EFCore01.Models
 {
     public class Course_Inst
     {
-        
         public int inst_ID { get; set; }
-
-       
         public int Course_ID { get; set; }
 
         [MaxLength(20)]
         public string Evaluate { get; set; }
-        public Instructor Instructor { get; set; }
-        public Course Course { get; set; }
+
+        public virtual Instructor Instructor { get; set; }
+        public virtual Course Course { get; set; }
     }
 }

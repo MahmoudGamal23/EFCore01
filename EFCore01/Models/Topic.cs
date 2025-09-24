@@ -14,6 +14,7 @@ namespace EFCore01.Models
 
         [Required, MaxLength(50)]
         public string Name { get; set; }
-        public List<Course> Courses { get; set; } = new();
+
+        public virtual List<Course> Courses { get; set; } = new();
     }
 }

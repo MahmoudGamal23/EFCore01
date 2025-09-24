@@ -10,6 +10,8 @@ namespace EFCore01.Contexts
 {
     public class ITIDbContext : DbContext
     {
+        
+
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Topic> Topics { get; set; }
@@ -17,11 +19,14 @@ namespace EFCore01.Contexts
         public DbSet<Stud_Course> Stud_Courses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Server=.;Database=ITIDb;Trusted_Connection=True;TrustServerCertificate=True;");
+                "Server=.;Database=ITIDb;Trusted_Connection=True;TrustServerCertificate=True;")
+            .UseLazyLoadingProxies();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -76,6 +81,15 @@ namespace EFCore01.Contexts
                 .HasOne(ci => ci.Course)
                 .WithMany(c => c.Course_Insts)
                 .HasForeignKey(ci => ci.Course_ID);
+
+            modelBuilder.Entity<Employee>()
+    .HasOne(e => e.Department)
+    .WithMany(d => d.Employees)
+    .HasForeignKey(e => e.Dept_ID)
+    .OnDelete(DeleteBehavior.SetNull);
+
+
+
         }
     }
 }

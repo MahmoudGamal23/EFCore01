@@ -24,7 +24,8 @@ namespace EFCore01.Models
         public int Age { get; set; }
 
         public int Dep_Id { get; set; }
-        public Department Department { get; set; }
-        public List<Stud_Course> Stud_Courses { get; set; } = new();
+
+        public virtual Department Department { get; set; }
+        public virtual List<Stud_Course> Stud_Courses { get; set; } = new();
     }
 }

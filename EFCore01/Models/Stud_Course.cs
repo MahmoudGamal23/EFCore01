@@ -10,12 +10,12 @@ namespace EFCore01.Models
 {
     public class Stud_Course
     {
-        
         public int stud_ID { get; set; }
         public int Course_ID { get; set; }
 
         public decimal Grade { get; set; }
-        public Student Student { get; set; }
-        public Course Course { get; set; } 
+
+        public virtual Student Student { get; set; }
+        public virtual Course Course { get; set; }
     }
 }

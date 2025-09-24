@@ -15,11 +15,14 @@ namespace EFCore01.Models
         [Required, MaxLength(50)]
         public string Name { get; set; }
 
-        public int Ins_ID { get; set; }
+        public int? Ins_ID { get; set; }
 
         public DateTime HiringDate { get; set; }
-        public Instructor Manager { get; set; }
-        public List<Student> Students { get; set; } = new();
-        public List<Instructor> Instructors { get; set; }= new();
+
+        public virtual Instructor Manager { get; set; }
+        public virtual List<Student> Students { get; set; } = new();
+        public virtual List<Instructor> Instructors { get; set; } = new();
+        public virtual List<Employee> Employees { get; set; } = new();
     }
 }
+

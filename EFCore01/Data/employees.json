@@ -1,0 +1,50 @@
+[
+  {
+    "FirstName": "Sama",
+    "LastName": "Ali",
+    "Gender": "F",
+    "Salary": 8000,
+    "HireDate": "2022-01-01",
+    "Dept_ID": 1
+  },
+  {
+    "FirstName": "Nadia",
+    "LastName": "Ali",
+    "Gender": "F",
+    "Salary": 5000,
+    "HireDate": "2022-02-15",
+    "Dept_ID": 2
+  },
+  {
+    "FirstName": "Soha",
+    "LastName": "Mohamed",
+    "Gender": "F",
+    "Salary": 3000,
+    "HireDate": "2023-03-10",
+    "Dept_ID": 1
+  },
+  {
+    "FirstName": "Mazen",
+    "LastName": "Ibrahim",
+    "Gender": "M",
+    "Salary": 8000,
+    "HireDate": "2021-06-01",
+    "Dept_ID": 2
+  },
+  {
+    "FirstName": "Sameh",
+    "LastName": "Hassan",
+    "Gender": "M",
+    "Salary": 9000,
+    "HireDate": "2020-09-12",
+    "Dept_ID": 1
+  },
+  {
+    "FirstName": "Pola",
+    "LastName": "Magdy",
+    "Gender": "M",
+    "Salary": 5000,
+    "HireDate": "2023-01-20",
+    "Dept_ID": 1
+  }
+]

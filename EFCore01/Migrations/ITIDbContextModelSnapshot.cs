@@ -18,6 +18,9 @@ namespace EFCore01.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -84,7 +87,7 @@ namespace EFCore01.Migrations
                     b.Property<DateTime>("HiringDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Ins_ID")
+                    b.Property<int?>("Ins_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -97,6 +100,48 @@ namespace EFCore01.Migrations
                     b.HasIndex("Ins_ID");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("EFCore01.Models.Employee", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("Dept_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SecurityLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Dept_ID");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("EFCore01.Models.Instructor", b =>
@@ -243,10 +288,19 @@ namespace EFCore01.Migrations
                     b.HasOne("EFCore01.Models.Instructor", "Manager")
                         .WithMany()
                         .HasForeignKey("Ins_ID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manager");
+                });
+
+            modelBuilder.Entity("EFCore01.Models.Employee", b =>
+                {
+                    b.HasOne("EFCore01.Models.Department", "Department")
+                        .WithMany("Employees")
+                        .HasForeignKey("Dept_ID")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("EFCore01.Models.Instructor", b =>
@@ -299,6 +353,8 @@ namespace EFCore01.Migrations
 
             modelBuilder.Entity("EFCore01.Models.Department", b =>
                 {
+                    b.Navigation("Employees");
+
                     b.Navigation("Instructors");
 
                     b.Navigation("Students");
